@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Canvas Animations: 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="blog-content">
+    <h1>Canvas Animations: 2</h1>
+    <div class="dropdown-container">
+      <label for="animation-select">Choose an animation:</label>
+      <div class="select-wrapper">
+        <select id="animation-select">
+            <option value="epicycloid" selected>Epicycloid Curve</option>
+            <option value="hypotrochoid">Hypotrochoid Curve</option>
+            <option value="fluid">Fluid System</option>
+            <option value="nodes">Nodes</option>
+            <option value="pattern">Pattern</option>
+            <option value="maru">Maru</option>
+        </select>
+      </div>
+    </div>
+    <div class="canvas-box">
+      <canvas id="canvas1" width="800" height="400"></canvas>
+      <canvas id="canvas2" width="800" height="400" style="display:none;"></canvas>
+      <canvas id="canvas3" width="800" height="400" style="display:none;"></canvas>
+      <canvas id="canvas4" width="800" height="400" style="display:none;"></canvas>
+      <canvas id="canvas5" width="800" height="400" style="display:none;"></canvas>
+      <canvas id="canvas6" width="800" height="400" style="display:none;"></canvas>
+    </div>
+  </main>
+  <script src="js/epicycloid-curve.js" defer></script>
+  <script src="js/hypotrochoid-curve.js" defer></script>
+  <script src="js/fluid-system.js" defer></script>
+  <script src="js/nodes.js" defer></script>
+  <script src="js/pattern.js" defer></script>
+  <script src="js/maru.js" defer></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const select   = document.getElementById('animation-select');
+    const canvases = {
+      epicycloid : document.getElementById('canvas1'),
+      hypotrochoid : document.getElementById('canvas2'),
+      fluid : document.getElementById('canvas3'),
+      nodes : document.getElementById('canvas4'),
+      pattern : document.getElementById('canvas5'),
+      maru : document.getElementById('canvas6')
+    };
+    function updateDisplay(){
+      const chosen = select.value;
+      for(const [key,canvas] of Object.entries(canvases)){
+        canvas.style.display = key === chosen ? 'block' : 'none';
+      }
+    }
+    select.addEventListener('change',updateDisplay);
+    updateDisplay();
+  });
+  </script>
+</body>
+</html>
